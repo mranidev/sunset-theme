@@ -43,11 +43,13 @@ function sunset_custom_settings()
     register_setting( 'sunset-setting-group', 'first_name' ); 
     register_setting( 'sunset-setting-group', 'last_name' );
     register_setting( 'sunset-setting-group', 'twitter_handler' ); 
+    register_setting( 'sunset-setting-group', 'user_description' ); 
     register_setting( 'sunset-setting-group', 'facebook_handler' );
     register_setting( 'sunset-setting-group', 'github_handler' ); 
 
     add_settings_section( 'sunset-sidebar-options', 'Sidebar Options', 'sunset_sidebar_options','mranidev_sunset' );
     add_settings_field( 'sidebar-name', 'Full Name', 'sunset_sidebar_name', 'mranidev_sunset', 'sunset-sidebar-options' );
+    add_settings_field( 'sidebar-description', 'User Description', 'sunset_sidebar_description', 'mranidev_sunset', 'sunset-sidebar-options' );
     add_settings_field( 'sidebar-twitter', 'Twitter Handler', 'sunset_sidebar_twitter', 'mranidev_sunset', 'sunset-sidebar-options' );
     add_settings_field( 'sidebar-facebook', 'Facebook Handler', 'sunset_sidebar_facebook', 'mranidev_sunset', 'sunset-sidebar-options' );
     add_settings_field( 'sidebar-github', 'Github Handler', 'sunset_sidebar_github', 'mranidev_sunset', 'sunset-sidebar-options' );
@@ -65,6 +67,13 @@ function sunset_sidebar_name()
     echo '<input name="first_name" type="text" value="'.$firstName.'" placeholder="First Name" />
           <input name="last_name" type="text" value="'.$lastName.'" placeholder="Last Name" />';   
 }
+
+function sunset_sidebar_description()
+{
+    $userDescription = esc_attr( get_option( 'user_description' ) );
+    echo '<input name="user_description" type="text" value="'.$userDescription.'" placeholder="User Description" />';
+}
+
 
 function sunset_sidebar_twitter()
 {
